@@ -1,0 +1,62 @@
+.App {
+  align-items: middle;
+}
+
+.navbar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 250px;
+}
+
+.searchbox {
+  margin-left: 100px;
+}
+
+.body-container {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  width: fit-content;
+}
+
+.shoplist {
+  list-style-type: none;
+  height: 800px;
+  overflow-y: scroll;
+  
+}
+
+.shoplist::-webkit-scrollbar {
+  display: none;
+}
+
+.shoplist-container {
+  margin-right: 12px;
+  
+}
+
+.shopName {
+  display: flex;
+  align-items: center;
+}
+
+.shopDescription {
+  text-align: justify;
+}
+
+.shopgrid {
+  border: solid;
+  width: 800px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.map-display {
+  border: solid;
+}
+
+li {
+  margin-bottom: 10px;
+}
