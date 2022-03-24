@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
+const format = require('pg-format')
 
 //middleware
 app.use(cors());
@@ -25,8 +26,24 @@ app.get("/food", async (req, res) => {
 //get one food choice
 app.get("/food/:id", async (req, res) => {
     try {
+        // console.log(req.params.id)
+        //const id = req.params.id
         const { id } = req.params;
-        const food = await pool.query("SELECT * FROM food_filters WHERE food_id = $1", [id])
+        // console.log(req.params)
+        const food = await pool.query("SELECT * FROM food_filters WHERE food_id = $1", [id]);
+        res.json(food.rows)
+    } catch (err) {
+        console.log(err.message)
+    }
+})
+
+//get filters for one food choice
+app.get("/food/:id/:filter", async (req, res) => {
+    try {
+        const { id, filter } = req.params;
+
+        const query = format("SELECT %I FROM food_filters WHERE food_id=%s", filter, id)
+        const food = await pool.query(query);
         res.json(food.rows)
     } catch (err) {
         console.log(err.message)
