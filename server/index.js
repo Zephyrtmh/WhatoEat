@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const format = require('pg-format')
+const format = require('pg-format');
+const https = require("https");
 
 //middleware
 app.use(cors());
@@ -37,7 +38,7 @@ app.get("/food/:id", async (req, res) => {
     }
 })
 
-//get filters for one food choice
+//get specific columns or filters for one food choice
 app.get("/food/:id/:filter", async (req, res) => {
     try {
         const { id, filter } = req.params;
@@ -49,6 +50,20 @@ app.get("/food/:id/:filter", async (req, res) => {
         console.log(err.message)
     }
 })
+
+//get maps iframe from google maps API 
+app.get("/map/:q", async (req, res) => {
+    try {
+        const { q } = req.params;
+        const google = "www.google.com/"
+        res = https.get(`https://www.google.com/maps/embed/v1/search?key=AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA&q=chickenrice`)
+        
+        console.log(res)
+    } catch (err) {
+        console.log(err.message)
+    }
+})
+
 
 app.listen(5000, () => {
     console.log("server has started on port 5000")

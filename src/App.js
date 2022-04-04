@@ -3,20 +3,24 @@ import { Component } from 'react';
 import './App.css';
 import Map from './components/Map.js';
 import Shoplist from './components/Shoplist.js';
-import Searchbox from './components/Searchbox.js';
-import { random_food } from './utils/utils';
+
+import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {placeholder: random_food(), food: ''};
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.state = {
+      extended: false
+    };
+
+    this.handleMenuClick = this.handleMenuClick.bind(this);
   }
 
-  handleSubmit(food) {
-    console.log("onSubmit is ran");
-    this.setState({food: food});
-    console.log(this.state.food);
+  handleMenuClick() {
+    this.state.extended = !this.state.extended;
+    console.log(this.state.extended)
   }
 
   render() {
@@ -24,18 +28,17 @@ class App extends Component {
     
     return (
       <div className="App">
-        <header className="navbar">
-          <h1>WhatoEat</h1>
-          <Searchbox placeholder={this.state.placeholder} handleSubmit = {this.handleSubmit}/>
-        </header>
+        <Navbar onClick={this.handleMenuClick}/>
         <body className="body-container">
-          <div className="shoplist-container">
+          {/* <div className="shoplist-container">
             <Shoplist shops={shops}/>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <Map food={this.state.food != ''? this.state.food : this.state.placeholder}/>
+          </div> */}
+          <div>
+            <Sidebar extended={this.state.extended} />
           </div>
-          
         </body>
         
       </div>

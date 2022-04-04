@@ -24,8 +24,8 @@ class Searchbox extends Component {
     render() {
         return (
             <div className="searchbox">
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.value} onChange={this.handleChange} placeholder={`${this.props.placeholder}?`} />
+                <form  onSubmit={this.handleSubmit}>
+                    <input className="searchbox-submit" type="text" value={this.state.value} onChange={this.handleChange} placeholder={`${this.props.placeholder}?`} />
                     {/* <input type="submit" value="Submit" /> */}
                 </form>
             </div>
