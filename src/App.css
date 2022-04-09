@@ -1,13 +1,8 @@
-.App {
-  align-items: middle;
-}
-
 .navbar {
   display: flex;
-  justify-content: left;
-  align-items: center;
-  margin-left: 80px;
-  margin-top: 50px;
+  justify-content: flex-start;
+  height: 60px;
+  margin: 50px 0 0 30px
 }
 
 .searchbox {
@@ -45,7 +40,6 @@
 .menu-img {
   width: 2.5rem;
   height: 2.5rem;
-  
 }
 
 .dice-button {
@@ -84,12 +78,8 @@
   100% { transform: translate(0px,0px) }
 }
 
-.body-container {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  width: fit-content;
+.sidebar-navbar {
+  display: inline-flex;
 }
 
 .shoplist {
@@ -103,9 +93,21 @@
   display: none;
 }
 
-.shoplist-container {
-  margin-right: 12px;
+.shoplist-hidden {
+  float: right;
+  list-style-type: none;
+  color: blue;
+  transform: translate(100vw);
+  transition-duration: 0.3s;
   
+}
+
+.shoplist-extended {
+  float: right;
+  list-style-type: none;
+  width: auto;
+  transform: translate(-2vw);
+  transition-duration: 0.3s;
 }
 
 .shopName {
@@ -119,9 +121,13 @@
 
 .shopgrid {
   border: solid;
-  width: 800px;
+  width: 30vw;
   padding-left: 12px;
   padding-right: 12px;
+}
+
+.shoplist-list {
+  list-style-type: none;
 }
 
 .map-display {
@@ -148,12 +154,23 @@ li {
   background-color: green;
   height: 100vh;
   margin-left: 0px;
-  width: 500px;
+  width: 30vw;
+  transform: translate(0vw);
+  transition-duration: 0.3s;
 }
 
 .sidebar-hidden {
+  transform: translate(-20vw);
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
   background-color: blue;
   height: 100vh;
-  margin-left: 0px;
-  width: 500px;
+}
+
+@keyframes open-sidebar {
+  to {translate: 30vw,0;}
+}
+
+@keyframes close-sidebar {
+  to {translate: -30vw,0;}
 }

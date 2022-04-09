@@ -5,10 +5,17 @@ function Shoplist(props) {
     const shopNames = props.shops.map((shop) => 
         <li key={shop}><Shop name={shop}/></li>
     );
-    console.log(shopNames)
+
+    let className = "shoplist-hidden"
+
+    if (props.extended === true) {
+        console.log("it's extended!")
+        className = "shoplist-extended"
+    }
+
     return (
-        <div>
-            <ul className="shoplist">{shopNames}</ul>
+        <div className={className}>
+            <ul className="shoplist-list">{shopNames}</ul>
         </div>
         
     );

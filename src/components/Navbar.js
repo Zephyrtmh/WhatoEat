@@ -8,15 +8,12 @@ export default class Navbar extends Component {
         this.state = {
           placeholder: random_food(),
           food: '',
-          extended: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(food) {
-        console.log("onSubmit is ran");
         this.setState({food: food});
-        console.log(this.state.food);
     }
 
     render() {
