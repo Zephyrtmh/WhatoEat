@@ -19,26 +19,27 @@ class App extends Component {
   }
 
   handleMenuClick() {
-    this.state.extended = !this.state.extended;
-    console.log(this.state.extended)
+    this.setState({extended: !this.state.extended});
+    console.log("state is changed " + this.state.extended);
   }
 
   render() {
+    console.log("app rendered")
     const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
-    
     return (
       <div className="App">
-        <Navbar onClick={this.handleMenuClick}/>
+        <Navbar onClick={this.handleMenuClick}/> 
         <body className="body-container">
+         
           {/* <div className="shoplist-container">
             <Shoplist shops={shops}/>
           </div> */}
           {/* <div>
             <Map food={this.state.food != ''? this.state.food : this.state.placeholder}/>
           </div> */}
-          <div>
-            <Sidebar extended={this.state.extended} />
-          </div>
+          
+          <Sidebar extended={this.state.extended} />
+          
         </body>
         
       </div>

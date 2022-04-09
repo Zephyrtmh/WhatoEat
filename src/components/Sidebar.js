@@ -4,17 +4,16 @@ import "./Sidebar.css";
 export default class Sidebar extends Component {
     constructor(props) {
         super(props);
-        this.state = {extended : props.extended}
     }
 
-    
-    
-
     render() {
-        
+        let className = 'sidebar-hidden'
+        if (this.props.extended === true) {
+            className = 'sidebar-extended';
+        }
         return (
-        <div className="sidebar-container">
-            something
+        <div className={className}>
+            {className}
         </div>
         )
     }

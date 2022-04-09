@@ -144,8 +144,15 @@ li {
   margin-bottom: 10px;
 }
 
-.sidebar-container {
-  background-color: black;
+.sidebar-extended {
+  background-color: green;
+  height: 100vh;
+  margin-left: 0px;
+  width: 500px;
+}
+
+.sidebar-hidden {
+  background-color: blue;
   height: 100vh;
   margin-left: 0px;
   width: 500px;
