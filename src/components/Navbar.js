@@ -10,10 +10,16 @@ export default class Navbar extends Component {
           food: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRandom = this.handleRandom.bind(this);
     }
 
     handleSubmit(food) {
         this.setState({food: food});
+    }
+
+    handleRandom() {
+        this.setState({placeholder: random_food()});
+        this.setState({food: ''});
     }
 
     render() {
@@ -23,7 +29,7 @@ export default class Navbar extends Component {
                 <img className="menu-img" src={require("../resources/images/menu.png")} alt="menu" onClick={this.props.onClick}/>
             </button>
             <Searchbox placeholder={this.state.placeholder} handleSubmit = {this.handleSubmit}/>
-            <button className="dice-button"> 
+            <button className="dice-button" onClick={this.handleRandom}> 
                 <img className="dice-img" src={require("../resources/images/dice.png")} alt="menu"/>
             </button>
         </div>
