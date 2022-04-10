@@ -1,6 +1,6 @@
 CREATE DATABASE food;
 
-CREATE TABLE food_filters(
+CREATE TABLE food_items(
     food_id SERIAL PRIMARY KEY,
     food_name VARCHAR(50),
     halal BOOLEAN,
@@ -12,7 +12,19 @@ CREATE TABLE food_filters(
     fried BOOLEAN
 );
 
-INSERT INTO food_filters (
+CREATE TABLE food_filters(
+    filter_id SERIAL PRIMARY KEY,
+    filter_name VARCHAR(50)
+);
+
+INSERT INTO food_filters(
+    filter_name
+    )
+    VALUES (
+        'spicy'
+);
+
+INSERT INTO food_items (
     food_name,
     halal,
     spicy,

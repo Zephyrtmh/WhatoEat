@@ -1,0 +1,8 @@
+food_id,food_name,halal,spicy,soup,hot,vegetarian,shared,fried
+1,chicken rice,f,f,f,t,f,f,f
+2,laksa,f,t,t,t,f,f,f
+3,mala stirfry,f,t,f,t,f,t,t
+4,mala hotpot,f,t,t,t,f,t,f
+5,chicken curry,f,t,t,t,f,f,f
+6,burgers,f,f,f,t,f,f,f
+7,fried rice,f,f,f,t,f,f,t

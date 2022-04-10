@@ -10,9 +10,11 @@ export default class Filter extends Component {
 
     render() {
         const filter = this.props.filter
-
+        // console.log(filter)
         return (
-        <div>{filter}</div>
+        <div>
+            {filter}
+        </div>
         )
     }
 }

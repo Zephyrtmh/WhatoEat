@@ -12,7 +12,7 @@ export default class Navbar extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleRandom = this.handleRandom.bind(this);
     }
-
+    
     handleSubmit(food) {
         this.setState({food: food});
     }

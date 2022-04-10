@@ -18,7 +18,6 @@ class Searchbox extends Component {
     handleSubmit(event) {
         this.props.handleSubmit(this.state.searchboxValue);
         event.preventDefault();
-        console.log(this.state.searchboxValue);
     }
 
     render() {
