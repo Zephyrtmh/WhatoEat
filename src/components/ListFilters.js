@@ -13,7 +13,7 @@ function ListFilters() {
             <li id={filter}><Filter filter={filter.filter_name}/></li>
             );
             setFilterList(filters)
-            console.log(filters);
+            
         } catch (err) {
             console.error(err);
         }
