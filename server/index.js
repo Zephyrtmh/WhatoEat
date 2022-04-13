@@ -14,7 +14,7 @@ app.use(express.json());
 //get all food choices
 app.get("/food", async (req, res) => {
     try {
-        const allFood = await pool.query("SELECT food_name FROM food_filters");
+        const allFood = await pool.query("SELECT food_name FROM food_items");
         res.json(allFood.rows);
     } catch (err) {
         console.log(err.message);
@@ -31,7 +31,7 @@ app.get("/food/:id", async (req, res) => {
         //const id = req.params.id
         const { id } = req.params;
         // console.log(req.params)
-        const food = await pool.query("SELECT * FROM food_filters WHERE food_id = $1", [id]);
+        const food = await pool.query("SELECT * FROM food_items WHERE food_id = $1", [id]);
         res.json(food.rows);
     } catch (err) {
         console.log(err.message);
@@ -43,13 +43,48 @@ app.get("/food/:id/:filter", async (req, res) => {
     try {
         const { id, filter } = req.params;
 
-        const query = format("SELECT %I FROM food_filters WHERE food_id=%s", filter, id)
+        const query = format("SELECT %I FROM food_items WHERE food_id=%s", filter, id)
         const food = await pool.query(query);
         res.json(food.rows);
     } catch (err) {
         console.log(err.message);
     }
-})
+});
+
+//get food names based on filters
+app.get("/submit", async (req, res) => {
+    // format of req data
+    // {
+    //     "filters": ["soup", "halal", "spicy"],
+    //     "values": [true, false, true]
+    // }
+    try {
+        let query = "SELECT food_name FROM food_items WHERE "
+        const body = req.body;
+        const filters = body.filters;
+        const values = body.values;
+
+        // if (filters.length()) {
+
+        // }
+        query += `${filters.shift()} = ${values.shift()}`
+
+        if (filters.length > 0) {
+            for (let [i, filter] of filters.entries()) {
+                query += ` AND ${filter} = ${values[i]}`;
+            }
+        }
+        
+        query += ";"
+
+        // console.log(query)
+        food_names = await pool.query(query);
+        res.json(food_names.rows);
+    } catch (err) {
+        console.log(err.message)
+    }
+    
+});
 
 //get food filters
 app.get("/filters", async (req, res) => {
