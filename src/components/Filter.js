@@ -6,7 +6,7 @@ export default class Filter extends Component {
         this.state = {
             yes: false,
             no: false,
-            either: false
+            either: true
         }
 
         this.handleClickYes = this.handleClickYes.bind(this);
@@ -41,18 +41,21 @@ export default class Filter extends Component {
     }
 
     render() {
-        const filter = this.props.filter
+        // if (this.props.toFilter === false) {
+        //     this.handleClickEither();
+        // }
+
+        const filterName = this.props.filterName
         // console.log(filter)
 
         let classNameYes = this.state.yes ? "filter-button-selected" : "filter-button-unselected";
         let classNameNo = this.state.no ? "filter-button-selected" : "filter-button-unselected";
         let classNameEither = this.state.either ? "filter-button-selected" : "filter-button-unselected";
 
-
         return (
         
         <div className="filter-list">
-            <p>{filter}</p>
+            <p>{filterName}</p>
             <div className="filter-buttons">
                 <button className={classNameYes} onClick={this.handleClickYes}>Yes</button>
                 <button className={classNameNo} onClick={this.handleClickNo}>No</button>

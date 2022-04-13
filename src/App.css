@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: flex-start;
   height: 60px;
-  margin: 50px 0 0 30px
+  margin: 5vh 0 0 2vw;
 }
 
 .searchbox {
@@ -206,6 +206,18 @@ li {
 #logo-img {
   position: relative;
   width:90%;
+  margin-top: 20px;
+}
+
+#logo-img-container {
+  display: flex;
+  justify-content: center;
+  /* margin: 10px; */
+}
+
+#filters-interface-container {
+  display: flex;
+  flex-direction: column;
 }
 
 #filter-list {
@@ -223,7 +235,7 @@ li {
 
 .filter-button-unselected {
   border-radius: 30px;
-  padding: 15px 25px;
+  padding: 15px 10%;
   border: solid 3px;
   color: none;
   opacity: 70%;
@@ -231,7 +243,7 @@ li {
 
 .filter-button-selected {
   border-radius: 30px;
-  padding: 15px 25px;
+  padding: 15px 10%;
   border: 3px solid ;
   color: red;
 }
@@ -243,6 +255,25 @@ li {
   border: solid 3px orange;
 }
 
-/* .filter-button:active {
-  border: solid 3px green;
-} */
+.no-filter-button-unselected {
+  border-radius: 30px;
+  padding: 15px 6%;
+  border: solid 3px;
+  color: none;
+  opacity: 70%;
+  /* width: 120px; */
+  align-self: flex-end;
+  margin-right: 10%;
+  margin-bottom: -10px;
+}
+
+.no-filter-button-selected {
+  border-radius: 30px;
+  padding: 15px 6%;
+  border: solid 3px;
+  color: red;
+  /* width: 120px; */
+  align-self: flex-end;
+  margin-right: 10%;
+  margin-bottom: -10px;
+}

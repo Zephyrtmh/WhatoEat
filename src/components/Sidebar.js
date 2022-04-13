@@ -1,5 +1,4 @@
-import React, { Component, useEffect } from 'react'
-import Filter from './Filter';
+import React, { Component } from 'react'
 import ListFilters from './ListFilters';
 
 export default class Sidebar extends Component {
@@ -15,7 +14,10 @@ export default class Sidebar extends Component {
 
         return (
         <div className={className}>
-            <img id="logo-img"src={require("../resources/images/whatoeat-logo.png")}/>
+            <div id="logo-img-container">
+                <img id="logo-img"src={require("../resources/images/whatoeat-logo.png")} alt="Logo"/>
+            </div>
+    
             <ListFilters />
         </div>
         )
