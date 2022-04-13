@@ -3,8 +3,9 @@ import Filter from './Filter';
 
 function ListFilters() {
 
-    const [filterList, setFilterList] = useState([]);
+    const [filterAllList, setFilterList] = useState([]);
     const [toFilter, setToFilter] = useState(true);
+    const [activeFilters, setActiveFilters] = useState({ "filters": ["soup", "halal"], "values": [true, false] });
 
     const getFilters = async () => {
         try {
@@ -25,6 +26,21 @@ function ListFilters() {
         console.log("toFilter set to"+!toFilter);
     }
 
+    const handleSubmit = async () => {
+        try {
+            // console.log(activeFilters)
+            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(activeFilters)})
+            let resJson = response.json()
+            // let foodNames = resJson.map((foodName) => console.log(foodName));
+            console.log(resJson)
+        } catch (err) {
+            console.log(err.message)
+        }
+        
+    }
+
+
+
     useEffect(() => {
         getFilters();
     });
@@ -35,8 +51,9 @@ function ListFilters() {
         <div id="filters-interface-container">
             <button className={noFilterClassName} onClick={handleNoFilter}>No filter</button>
             <ul id="filter-list">
-                {filterList}
+                {filterAllList}
             </ul>
+            <button className="submit-button" onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

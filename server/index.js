@@ -52,7 +52,7 @@ app.get("/food/:id/:filter", async (req, res) => {
 });
 
 //get food names based on filters
-app.get("/submit", async (req, res) => {
+app.post("/submit", async (req, res) => {
     // format of req data
     // {
     //     "filters": ["soup", "halal", "spicy"],
@@ -65,7 +65,8 @@ app.get("/submit", async (req, res) => {
         const values = body.values;
 
         // if (filters.length()) {
-
+        // console.log(body)
+        // console.log(req)
         // }
         query += `${filters.shift()} = ${values.shift()}`
 
@@ -80,6 +81,8 @@ app.get("/submit", async (req, res) => {
         // console.log(query)
         food_names = await pool.query(query);
         res.json(food_names.rows);
+        console.log(res);
+        
     } catch (err) {
         console.log(err.message)
     }
