@@ -5,7 +5,8 @@ function ListFilters() {
 
     const [filterAllList, setFilterList] = useState([]);
     const [toFilter, setToFilter] = useState(true);
-    const [activeFilters, setActiveFilters] = useState({ "filters": ["soup", "halal"], "values": [true, false] });
+    const [activeFilters, setActiveFilters] = useState({ "filters": ["soup", "halal"], "values": [false, false] });
+    const [possibleFoodItems, setPossibleFoodItems] = useState([])
 
     const getFilters = async () => {
         try {
@@ -29,10 +30,16 @@ function ListFilters() {
     const handleSubmit = async () => {
         try {
             // console.log(activeFilters)
-            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(activeFilters)})
-            let resJson = response.json()
+            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(activeFilters)});
+            let resJson = response.json();
             // let foodNames = resJson.map((foodName) => console.log(foodName));
-            console.log(resJson)
+            resJson.then((data) => {
+                let food_names = [];
+                for (let food in data) {
+                    food_names.push(data[food].food_name);
+                }
+                setPossibleFoodItems(food_names);
+            });
         } catch (err) {
             console.log(err.message)
         }
