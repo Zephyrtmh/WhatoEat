@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Filter from './Filter';
+import { FoodContext } from '../Context/FoodContext';
 
-function ListFilters() {
+function ListFilters(props) {
 
     const [filterAllList, setFilterList] = useState([]);
     const [toFilter, setToFilter] = useState(true);
     const [activeFilters, setActiveFilters] = useState({ "filters": ["soup", "halal"], "values": [false, false] });
     const [possibleFoodItems, setPossibleFoodItems] = useState([])
+
+
+    let context = useContext(FoodContext);
 
     const getFilters = async () => {
         try {
@@ -39,6 +43,9 @@ function ListFilters() {
                     food_names.push(data[food].food_name);
                 }
                 setPossibleFoodItems(food_names);
+                
+                console.log(context);
+                context.setFoodItem(possibleFoodItems);
             });
         } catch (err) {
             console.log(err.message)
@@ -46,7 +53,9 @@ function ListFilters() {
         
     }
 
+    const foodContext = React.createContext('');
 
+    
 
     useEffect(() => {
         getFilters();
@@ -56,6 +65,7 @@ function ListFilters() {
 
     return (
         <div id="filters-interface-container">
+            <p>something {props.something}</p>
             <button className={noFilterClassName} onClick={handleNoFilter}>No filter</button>
             <ul id="filter-list">
                 {filterAllList}

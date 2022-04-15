@@ -11,6 +11,7 @@ export default class Sidebar extends Component {
         if (this.props.extended === true) {
             className = 'sidebar-extended';
         }
+        let something = "something";
 
         return (
         <div className={className}>
@@ -18,7 +19,7 @@ export default class Sidebar extends Component {
                 <img id="logo-img"src={require("../resources/images/whatoeat-logo.png")} alt="Logo"/>
             </div>
     
-            <ListFilters />
+            <ListFilters getFoodItem={this.props.getFoodItem} sonmething={something}/>
         </div>
         )
     }
