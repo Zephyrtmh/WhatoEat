@@ -4,7 +4,7 @@ export function random_food(foodChoices=["chicken rice", "laksa", "prata", "past
     return choice
 }
 
-export function convertFilters(filters) {
+export function convertFiltersFormat(filters) {
     //example format of input:
     // {
     //     fried: "yes"
@@ -22,7 +22,11 @@ export function convertFilters(filters) {
     //     "filters": ["soup", "halal", "spicy"],
     //     "values": [true, false, true]
     // }
-
-
-
+    
+    for (let key of Object.keys(filters)) {
+        if (filters[key] === 'either') {
+            delete filters[key];
+        }
+    }
+    return {"filters": Object.keys(filters), "values": Object.values(filters)}
     }

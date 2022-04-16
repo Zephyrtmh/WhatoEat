@@ -77,11 +77,10 @@ app.post("/submit", async (req, res) => {
         }
         
         query += ";"
-
-        // console.log(query)
+        console.log(query)
         food_names = await pool.query(query);
         res.json(food_names.rows);
-        console.log(res);
+        // console.log(res.json());
         
     } catch (err) {
         console.log(err.message)

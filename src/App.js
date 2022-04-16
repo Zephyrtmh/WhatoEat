@@ -33,12 +33,12 @@ class App extends Component {
     this.setState({foodItem: food});
   }
 
+
   render() {
 
     console.log("app rendered")
     console.log(this.state.foodItem)
     const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
-    const foodContext = FoodContext;
     
     return (
       <FoodContext.Provider value={this.state}>
@@ -48,7 +48,7 @@ class App extends Component {
           </div> */}
           <div className="sidebar-navbar">
             <div className = "sidebar-container">
-              <Sidebar extended={this.state.extended} getFoodItem={this.getFoodItem}/>
+              <Sidebar extended={this.state.extended} setFoodItem={this.setFoodItem}/>
             </div>
             <Navbar onClick={this.handleMenuClick}/>
           </div>

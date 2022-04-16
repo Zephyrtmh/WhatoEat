@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Filter from './Filter';
 import { FoodContext } from '../Context/FoodContext';
+import { convertFiltersFormat } from '../utils/utils';
 
 function ListFilters(props) {
 
     const [filterAllList, setFilterList] = useState([]);
     const [toFilter, setToFilter] = useState(true);
-    const [activeFilters, setActiveFilters] = useState({ "filters": ["soup", "halal"], "values": [false, false] });
-    const [activeFilters2, setActiveFilters2] = useState({"halal": 'either'});
-    const [possibleFoodItems, setPossibleFoodItems] = useState([]);
+    const [activeFilters, setActiveFilters] = useState({"halal": 'either'});
 
 
     let context = useContext(FoodContext);
@@ -27,23 +26,20 @@ function ListFilters(props) {
             let someObj = {}
             await jsonData.forEach(async (element) => {
                 someObj[element.filter_name] = 'either';
-                // activeFilters2[element.food_name] = 'either';
+                // activeFilters[element.food_name] = 'either';
             })
             // console.log(someObj);
-            setActiveFilters2(someObj);        
+            setActiveFilters(someObj);        
             
             
         } catch (err) {
             console.error(err);
         }
     };
-    const setActiveFilter = () => {
-        setActiveFilters2({})
-    }
 
     const handleFilterSelection = (filterName, value) => {
-        activeFilters2[filterName] = value;
-        setActiveFilters2(activeFilters2);
+        activeFilters[filterName] = value;
+        setActiveFilters(activeFilters);
     }
 
     const handleNoFilter = () => {
@@ -53,18 +49,17 @@ function ListFilters(props) {
 
     const handleSubmit = async () => {
         try {
-            console.log(activeFilters2)
-            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(activeFilters)});
+            const convertedActiveFilters = convertFiltersFormat(activeFilters);
+            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(convertedActiveFilters)});
             let resJson = response.json();
             // let foodNames = resJson.map((foodName) => console.log(foodName));
-            resJson.then((data) => {
+            await resJson.then((data) => {
                 let food_names = [];
                 for (let food in data) {
                     food_names.push(data[food].food_name);
                 }
-                setPossibleFoodItems(food_names);
-                context.setFoodItem(possibleFoodItems);
-                console.log(possibleFoodItems)
+                console.log(food_names)
+            context.setFoodItem(food_names);
             });
         } catch (err) {
             console.log(err.message)

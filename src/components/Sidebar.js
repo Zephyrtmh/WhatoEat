@@ -19,7 +19,7 @@ export default class Sidebar extends Component {
                 <img id="logo-img"src={require("../resources/images/whatoeat-logo.png")} alt="Logo"/>
             </div>
     
-            <ListFilters getFoodItem={this.props.getFoodItem} sonmething={something}/>
+            <ListFilters setFoodItem={this.props.setFoodItem} sonmething={something}/>
         </div>
         )
     }

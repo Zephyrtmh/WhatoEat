@@ -24,34 +24,32 @@ export default class Filter extends Component {
     componentDidUpdate() {
         this.props.handleFilterSelection(this.state.filterName, this.state.selection);
         console.log(this.state.filterName, this.state.selection);
-        console.log("updating selection")
+        console.log("selection updated")
     }
 
     handleClickYes() {
-        console.log(this.state.yes)
-        this.setState({yes: !this.state.yes, noFilterClicked: false});
-        console.log(this.state.yes)
         if (!this.state.yes) {
+            this.setState({yes: !this.state.yes, noFilterClicked: false});
             this.setState({no: false});
             this.setState({either: false});
-            this.setState({selection: 'yes'})
+            this.setState({selection: true})
             // this.props.handleFilterSelection(this.state.filterName, this.state.selection)
         }
     }
 
     handleClickNo() {
-        this.setState({no: !this.state.no, noFilterClicked: false});
-        if (!this.state.no) {
+        if (this.state.no == false) {
+            this.setState({no: !this.state.no, noFilterClicked: false});
             this.setState({yes: false});
             this.setState({either: false});
-            this.setState({selection: 'no'})
+            this.setState({selection: false})
             // this.props.handleFilterSelection({selection: 'no'})
         }
     }
 
     handleClickEither() {
-        this.setState({either: !this.state.either, noFilterClicked: false});
         if (!this.state.either) {
+            this.setState({either: !this.state.either, noFilterClicked: false});
             this.setState({yes: false});
             this.setState({no: false});
             this.setState({selection: 'either'})
