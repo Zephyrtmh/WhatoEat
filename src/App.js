@@ -7,6 +7,7 @@ import Shoplist from './components/Shoplist.js';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { FoodContext } from './Context/FoodContext';
+import { getCurrLocation } from './utils/utils';
 
 
 class App extends Component {
@@ -18,7 +19,8 @@ class App extends Component {
     this.state = {
       extended: false,
       foodItem: '',
-      setFoodItem: this.setFoodItem
+      setFoodItem: this.setFoodItem,
+      location: {"lat": '', "lon": ''}
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -33,9 +35,19 @@ class App extends Component {
     this.setState({foodItem: food});
   }
 
+  componentDidMount() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        this.setState({location: { "lat": lat, "lon": lon }});
+      });
+    } else {
+      console.log("geolocation not available")
+    }
+  }
 
   render() {
-
     console.log("app rendered")
     console.log(this.state.foodItem)
     const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
@@ -43,16 +55,20 @@ class App extends Component {
     return (
       <FoodContext.Provider value={this.state}>
         <body className="body-container">
-          {/* <div>
-            <Map food={this.state.food != ''? this.state.food : this.state.placeholder}/>
-          </div> */}
+          <p>{this.state.location.lat+', '+this.state.location.lon}</p>
+          <div>
+            <Map foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder}/>
+          </div>
           <div className="sidebar-navbar">
             <div className = "sidebar-container">
               <Sidebar extended={this.state.extended} setFoodItem={this.setFoodItem}/>
             </div>
             <Navbar onClick={this.handleMenuClick}/>
           </div>
+
           <Shoplist shops={shops} extended={this.state.extended}/>
+        
+          
         </body>
       </FoodContext.Provider>
     );

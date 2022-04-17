@@ -99,27 +99,31 @@ body {
 
 
 
-.shoplist {
+/* .shoplist {
   list-style-type: none;
   height: 800px;
   overflow-y: scroll;
   
-}
+} */
+
 
 .shoplist-extended::-webkit-scrollbar {
   display: none;
 }
 
 .shoplist-hidden {
+  position: relative;
+  z-index: 1;
   float: right;
   list-style-type: none;
   color: blue;
   margin-right:-30vw;
   transition-duration: 0.3s;
-  
 }
 
 .shoplist-extended {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   float: right;
@@ -128,6 +132,7 @@ body {
   transition-duration: 0.3s;
   max-height: 100vh;
   overflow-y: scroll;
+  z-index: 1;
 }
 
 .shopName {
@@ -150,7 +155,6 @@ body {
   margin: 0 0 20px 0;
   background-color: var(--colour4);
   box-shadow: 6px 6px;
-  
 }
 
 .shoplist-list {
@@ -159,6 +163,7 @@ body {
 }
 
 .map-display {
+  /* display: none; */
   border: solid;
   position:fixed; 
   top:0; 
@@ -171,14 +176,12 @@ body {
   margin:0; 
   padding:0; 
   overflow:hidden; 
-  /* z-index:0; */
-}
-
-li {
-  /* margin-bottom: 20px; */
+  z-index:0;
 }
 
 .sidebar-extended {
+  position: relative;
+  z-index: 1;
   border-right: solid var(--colour5);
   background-color: var(--colour4);
   height: 100vh;

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import Filter from './Filter';
 import { FoodContext } from '../Context/FoodContext';
-import { convertFiltersFormat } from '../utils/utils';
+import { random_food, convertFiltersFormat } from '../utils/utils';
 
 function ListFilters(props) {
 
@@ -36,8 +36,10 @@ function ListFilters(props) {
                 for (let food in data) {
                     food_names.push(data[food].food_name);
                 }
-                console.log(food_names)
-            context.setFoodItem(food_names);
+                let rand_food = random_food(food_names);
+                console.log(food_names);
+                console.log(rand_food);
+            context.setFoodItem(random_food(food_names));
             });
         } catch (err) {
             console.log(err.message)

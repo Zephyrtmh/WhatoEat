@@ -106,18 +106,18 @@ app.get("/filters", async (req, res) => {
     }
 })
 
-//get maps iframe from google maps API 
-app.get("/map/:q", async (req, res) => {
-    try {
-        const { q } = req.params;
-        const google = "www.google.com/"
-        res = https.get(`https://www.google.com/maps/embed/v1/search?key=AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA&q=chickenrice`)
+// //get maps iframe from google maps API 
+// app.get("/map/:q", async (req, res) => {
+//     try {
+//         const { q } = req.params;
+//         const google = "www.google.com/"
+//         res = https.get(`https://www.google.com/maps/embed/v1/search?key=AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA&q=chickenrice`)
         
-        console.log(res)
-    } catch (err) {
-        console.log(err.message)
-    }
-})
+//         console.log(res)
+//     } catch (err) {
+//         console.log(err.message)
+//     }
+// })
 
 
 app.listen(5000, () => {
