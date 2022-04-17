@@ -58,23 +58,31 @@ app.post("/submit", async (req, res) => {
     //     "filters": ["soup", "halal", "spicy"],
     //     "values": [true, false, true]
     // }
+    console.log(req.body)
+    console.log(typeof req.body.filters)
+    let query = ''
     try {
-        let query = "SELECT food_name FROM food_items WHERE "
-        const body = req.body;
-        const filters = body.filters;
-        const values = body.values;
-
-        // if (filters.length()) {
-        // console.log(body)
-        // console.log(req)
-        // }
-        query += `${filters.shift()} = ${values.shift()}`
-
-        if (filters.length > 0) {
-            for (let [i, filter] of filters.entries()) {
-                query += ` AND ${filter} = ${values[i]}`;
+        if (typeof req.body.filters === 'undefined') {
+            query = "SELECT food_name FROM food_items";
+        } else {
+            query = "SELECT food_name FROM food_items WHERE ";
+            const body = req.body;
+            const filters = body.filters;
+            const values = body.values;
+    
+            // if (filters.length()) {
+            // console.log(body)
+            // console.log(req)
+            // }
+            query += `${filters.shift()} = ${values.shift()}`
+    
+            if (filters.length > 0) {
+                for (let [i, filter] of filters.entries()) {
+                    query += ` AND ${filter} = ${values[i]}`;
+                }
             }
         }
+
         
         query += ";"
         console.log(query)

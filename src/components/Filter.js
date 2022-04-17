@@ -32,17 +32,17 @@ export default class Filter extends Component {
             this.setState({yes: !this.state.yes, noFilterClicked: false});
             this.setState({no: false});
             this.setState({either: false});
-            this.setState({selection: true})
+            this.setState({selection: true});
             // this.props.handleFilterSelection(this.state.filterName, this.state.selection)
         }
     }
 
     handleClickNo() {
-        if (this.state.no == false) {
+        if (!this.state.no) {
             this.setState({no: !this.state.no, noFilterClicked: false});
             this.setState({yes: false});
             this.setState({either: false});
-            this.setState({selection: false})
+            this.setState({selection: false});
             // this.props.handleFilterSelection({selection: 'no'})
         }
     }
@@ -52,14 +52,15 @@ export default class Filter extends Component {
             this.setState({either: !this.state.either, noFilterClicked: false});
             this.setState({yes: false});
             this.setState({no: false});
-            this.setState({selection: 'either'})
+            this.setState({selection: 'either'});
             // this.props.handleFilterSelection({selection: 'either'})
         }
     }
 
     render() {
         
-        if (this.props.toFilter == false && this.state.noFilterClicked == false) {
+        if (this.props.toFilter === false && this.state.noFilterClicked ===false) {
+            console.log("toFilter is checked")
             this.setState({yes: false, no: false, either: true, noFilterClicked: true})
     
         }

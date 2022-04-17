@@ -13,29 +13,7 @@ function ListFilters(props) {
     let context = useContext(FoodContext);
 
 
-    const getFilters = async () => {
-        try {
-            // need to add check to prevent infinite loop
-            
-            const response = await fetch("http://localhost:5000/filters/");
-            const jsonData = await response.json();
-            const filters = jsonData.map((filter) => 
-            <li id={filter}><Filter filterName={filter.filter_name} toFilter={toFilter} handleFilterSelection={handleFilterSelection}/></li>
-            );
-            setFilterList(filters);
-            let someObj = {}
-            await jsonData.forEach(async (element) => {
-                someObj[element.filter_name] = 'either';
-                // activeFilters[element.food_name] = 'either';
-            })
-            // console.log(someObj);
-            setActiveFilters(someObj);        
-            
-            
-        } catch (err) {
-            console.error(err);
-        }
-    };
+
 
     const handleFilterSelection = (filterName, value) => {
         activeFilters[filterName] = value;
@@ -73,8 +51,31 @@ function ListFilters(props) {
     
 
     useEffect(() => {
+        const getFilters = async () => {
+            try {
+                // need to add check to prevent infinite loop
+                
+                const response = await fetch("http://localhost:5000/filters/");
+                const jsonData = await response.json();
+                const filters = jsonData.map((filter) => 
+                <li id={filter}><Filter filterName={filter.filter_name} toFilter={toFilter} handleFilterSelection={handleFilterSelection}/></li>
+                );
+                setFilterList(filters);
+                let someObj = {}
+                await jsonData.forEach(async (element) => {
+                    someObj[element.filter_name] = 'either';
+                    // activeFilters[element.food_name] = 'either';
+                })
+                // console.log(someObj);
+                setActiveFilters(someObj);        
+                
+                
+            } catch (err) {
+                console.error(err);
+            }
+        };
         getFilters();
-    }, []);
+    }, [toFilter]);
 
     let noFilterClassName = toFilter ? "no-filter-button-unselected" : "no-filter-button-selected";
 
