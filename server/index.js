@@ -119,6 +119,26 @@ app.get("/filters", async (req, res) => {
 //     }
 // })
 
+app.post("/places", async (req, res) => {
+    try {
+        let search = req.body.search
+        let lat = req.body.lat;
+        let lon = req.body.lon;
+        let apiKey = "AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA";
+        let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?
+        ?keyword=${search}
+        &location=${lat}%2C${lon}
+        &type=restaurant
+        &radius=1500
+        &key=${apiKey}
+        `
+        console.log(httpLink)
+        let places = https.get(httpLink)
+        res.json(places)
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 app.listen(5000, () => {
     console.log("server has started on port 5000")
