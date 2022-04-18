@@ -7,7 +7,7 @@ import Shoplist from './components/Shoplist.js';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { FoodContext } from './Context/FoodContext';
-import { getCurrLocation } from './utils/utils';
+import { getCurrLocation, getPlaces } from './utils/utils';
 
 
 class App extends Component {
@@ -51,11 +51,13 @@ class App extends Component {
     console.log("app rendered")
     console.log(this.state.foodItem)
     const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
+    if (this.state.foodItem != '') {
+      getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lon)
+    }
     
     return (
       <FoodContext.Provider value={this.state}>
         <body className="body-container">
-          <p>{this.state.location.lat+', '+this.state.location.lon}</p>
           <div>
             <Map foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder}/>
           </div>

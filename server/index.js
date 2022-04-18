@@ -4,6 +4,7 @@ const cors = require("cors");
 const pool = require("./db");
 const format = require('pg-format');
 const https = require("https");
+const axios = require('axios');
 
 //middleware
 app.use(cors());
@@ -125,15 +126,16 @@ app.post("/places", async (req, res) => {
         let lat = req.body.lat;
         let lon = req.body.lon;
         let apiKey = "AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA";
-        let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-        ?keyword=${search}
+        let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${search}
         &location=${lat}%2C${lon}
         &type=restaurant
         &radius=1500
         &key=${apiKey}
         `
-        console.log(httpLink)
-        let places = https.get(httpLink)
+        let httpLinkExample = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&key=${apiKey}`
+        console.log(httpLinkExample)
+        axios.get(httpLink)
+        .then(data=> console.log(data.data.results));
         res.json(places)
     } catch (err) {
         console.error(err.message);

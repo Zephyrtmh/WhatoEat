@@ -31,22 +31,8 @@ export function convertFiltersFormat(filters) {
     return {"filters": Object.keys(filters), "values": Object.values(filters)}
 }
 
-export function getCurrLocation() {
-    new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            let location = navigator.geolocation.getCurrentPosition(persmissionGiven);
-            resolve(location);
-        } else {
-            reject("geolocation not available");
-        }
-
-        function persmissionGiven(position) {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-            return { "lat": lat, "lon":  lon }
-        }
-    }).then(
-    )
-    
-    
+export async function getPlaces(keyword, lat, lon) {
+    let req = {"search": keyword, "lat": lat, "lon": lon}
+    const response = await fetch("http://localhost:5000/places", req);
+    console.log(response.data)
 }
