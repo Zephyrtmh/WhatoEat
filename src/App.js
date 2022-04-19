@@ -20,7 +20,8 @@ class App extends Component {
       extended: false,
       foodItem: '',
       setFoodItem: this.setFoodItem,
-      location: {"lat": '', "lon": ''}
+      location: {"lat": '', "lon": ''},
+      places: []
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -31,8 +32,20 @@ class App extends Component {
     this.setState({extended: !this.state.extended});
   }
 
-  setFoodItem = (food) => {
+  setFoodItem = async (food) => {
     this.setState({foodItem: food});
+    
+    if (this.state.foodItem != '') {
+      // let req = { "search": this.state.foodItem, "lat": this.state.location.lat, "lon": this.state.location.lon };
+      // const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
+      // const places = await response.json()
+      // this.setState({places: places})
+      let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lon)
+      this.setState({places: places})
+
+      // console.log("reponse done")
+      // console.log(response)
+    }
   }
 
   componentDidMount() {
@@ -49,11 +62,9 @@ class App extends Component {
 
   render() {
     console.log("app rendered")
-    console.log(this.state.foodItem)
-    const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
-    if (this.state.foodItem != '') {
-      getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lon)
-    }
+    // const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
+    
+    
     
     return (
       <FoodContext.Provider value={this.state}>
@@ -68,7 +79,7 @@ class App extends Component {
             <Navbar onClick={this.handleMenuClick}/>
           </div>
 
-          <Shoplist shops={shops} extended={this.state.extended}/>
+          <Shoplist shops={this.state.places} extended={this.state.extended}/>
         
           
         </body>

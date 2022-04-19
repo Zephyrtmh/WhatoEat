@@ -89,7 +89,6 @@ app.post("/submit", async (req, res) => {
         console.log(query)
         food_names = await pool.query(query);
         res.json(food_names.rows);
-        // console.log(res.json());
         
     } catch (err) {
         console.log(err.message)
@@ -122,6 +121,7 @@ app.get("/filters", async (req, res) => {
 
 app.post("/places", async (req, res) => {
     try {
+        console.log("query received")
         let search = req.body.search
         let lat = req.body.lat;
         let lon = req.body.lon;
@@ -132,11 +132,17 @@ app.post("/places", async (req, res) => {
         &radius=1500
         &key=${apiKey}
         `
-        let httpLinkExample = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&key=${apiKey}`
-        console.log(httpLinkExample)
+        console.log(search)
         axios.get(httpLink)
-        .then(data=> console.log(data.data.results));
-        res.json(places)
+        .then((response) => {
+            const data = response.data
+            const places = data.results
+            res.json(places)
+            console.log(places)
+        }, (error) => {
+            console.error(error);
+        });
+
     } catch (err) {
         console.error(err.message);
     }

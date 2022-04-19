@@ -1,11 +1,23 @@
 import React from 'react';
 
 function Shop(props) {
-    
+    let openStatus = '';
+    if (props.details['opening_hours']) {
+        openStatus = props.details['opening_hours']['open_now'] ? "open" : "closed";
+    } else {
+        openStatus = "no info";
+    }
+    console.log(props.details['opening_hours']);
+    // let isOpenJson = JSON.parse(props.details['opening_hours'])
+    // let isOpen = isOpenJson['open_now']
+    // const openStatus = isOpen ? "open" : "closed";
+    // console.log(isOpen);
     return (
         <div className="shopgrid">
-            <h2 className="shopName">{props.name}</h2>
-            <p className="shop-description">Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Vitae semper quis lectus nulla at volutpat diam ut venenatis. Euismod in pellentesque massa placerat. Turpis massa tincidunt dui ut ornare lectus. Ac tortor vitae purus faucibus. Maecenas ultricies mi eget mauris pharetra. Adipiscing elit pellentesque habitant morbi tristique senectus et.</p>
+            <h4 className="shopName">{props.name}</h4>
+            <p className="shop-ratings">Ratings: {props.details['rating']}/5 ({props.details['user_ratings_total']})</p>
+            <p className="shop-address">{props.details['vicinity']}</p>
+            <p>{openStatus}</p>
         </div>
     );
 }

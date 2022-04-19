@@ -3,7 +3,7 @@ import Shop from './Shop.js';
 
 function Shoplist(props) {
     const shopNames = props.shops.map((shop) => 
-        <li key={shop}><Shop name={shop}/></li>
+        <li key={shop['name']}><Shop name={shop['name']} details ={shop}/></li>
     );
 
     let className = "shoplist-hidden"
