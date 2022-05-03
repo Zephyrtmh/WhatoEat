@@ -31,22 +31,20 @@ export function convertFiltersFormat(filters) {
     return {"filters": Object.keys(filters), "values": Object.values(filters)}
 }
 
-export function getCurrLocation() {
-    new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            let location = navigator.geolocation.getCurrentPosition(persmissionGiven);
-            resolve(location);
-        } else {
-            reject("geolocation not available");
+export async function getPlaces(keyword, lat, lon) {
+    try {
+        let req = {"search": keyword, "lat": lat, "lon": lon}
+        // console.log(req)
+        const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
+        const body = await response.json()
+        let places = []
+        for (let place in body) {
+            places.push(body[place])
         }
-
-        function persmissionGiven(position) {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-            return { "lat": lat, "lon":  lon }
-        }
-    }).then(
-    )
-    
+        return places
+    }
+    catch (err) {
+        console.error(err.message)
+    }
     
 }

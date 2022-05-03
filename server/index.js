@@ -4,6 +4,7 @@ const cors = require("cors");
 const pool = require("./db");
 const format = require('pg-format');
 const https = require("https");
+const axios = require('axios');
 
 //middleware
 app.use(cors());
@@ -88,7 +89,6 @@ app.post("/submit", async (req, res) => {
         console.log(query)
         food_names = await pool.query(query);
         res.json(food_names.rows);
-        // console.log(res.json());
         
     } catch (err) {
         console.log(err.message)
@@ -121,20 +121,28 @@ app.get("/filters", async (req, res) => {
 
 app.post("/places", async (req, res) => {
     try {
+        console.log("query received")
         let search = req.body.search
         let lat = req.body.lat;
         let lon = req.body.lon;
         let apiKey = "AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA";
-        let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-        ?keyword=${search}
+        let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${search}
         &location=${lat}%2C${lon}
         &type=restaurant
         &radius=1500
         &key=${apiKey}
         `
-        console.log(httpLink)
-        let places = https.get(httpLink)
-        res.json(places)
+        console.log(search)
+        axios.get(httpLink)
+        .then((response) => {
+            const data = response.data
+            const places = data.results
+            res.json(places)
+            console.log(places)
+        }, (error) => {
+            console.error(error);
+        });
+
     } catch (err) {
         console.error(err.message);
     }
