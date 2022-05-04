@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import { Component } from 'react';
 import './App.css';
-import Map from './components/Map.js';
+import GoogleMap from './components/GoogleMap.js';
 import Shoplist from './components/Shoplist.js';
 
 import Sidebar from './components/Sidebar';
@@ -20,7 +20,7 @@ class App extends Component {
       extended: false,
       foodItem: '',
       setFoodItem: this.setFoodItem,
-      location: {"lat": '', "lon": ''},
+      location: {"lat": '', "lng": ''},
       places: []
     };
 
@@ -40,8 +40,13 @@ class App extends Component {
       // const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
       // const places = await response.json()
       // this.setState({places: places})
-      let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lon)
+      let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lng)
+      
       this.setState({places: places})
+      this.state.places.map((place) => {
+        console.log(place)
+      })
+      
 
       // console.log("reponse done")
       // console.log(response)
@@ -52,25 +57,22 @@ class App extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        this.setState({location: { "lat": lat, "lon": lon }});
+        let lng = position.coords.longitude;
+        this.setState({location: { "lat": lat, "lng": lng }});
       });
     } else {
-      console.log("geolocation not available")
+      console.log("geolocation not available");
     }
   }
 
   render() {
-    console.log("app rendered")
-    // const shops = ["moshi store", "good food", "best food", "shit store", "another store", "food store", "running out of names"];
-    
-    
+    console.log("app rendered");
     
     return (
       <FoodContext.Provider value={this.state}>
         <body className="body-container">
           <div>
-            <Map foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder}/>
+            <GoogleMap foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder} location={this.state.location} places={this.state.places}/>
           </div>
           <div className="sidebar-navbar">
             <div className = "sidebar-container">

@@ -88,6 +88,7 @@ app.post("/submit", async (req, res) => {
         query += ";"
         console.log(query)
         food_names = await pool.query(query);
+        console.log(food_names)
         res.json(food_names.rows);
         
     } catch (err) {
@@ -124,10 +125,10 @@ app.post("/places", async (req, res) => {
         console.log("query received")
         let search = req.body.search
         let lat = req.body.lat;
-        let lon = req.body.lon;
+        let lng = req.body.lng;
         let apiKey = "AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA";
         let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${search}
-        &location=${lat}%2C${lon}
+        &location=${lat}%2C${lng}
         &type=restaurant
         &radius=1500
         &key=${apiKey}

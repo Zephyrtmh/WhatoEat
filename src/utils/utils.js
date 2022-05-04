@@ -31,9 +31,9 @@ export function convertFiltersFormat(filters) {
     return {"filters": Object.keys(filters), "values": Object.values(filters)}
 }
 
-export async function getPlaces(keyword, lat, lon) {
+export async function getPlaces(keyword, lat, lng) {
     try {
-        let req = {"search": keyword, "lat": lat, "lon": lon}
+        let req = {"search": keyword, "lat": lat, "lng": lng}
         // console.log(req)
         const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
         const body = await response.json()
@@ -41,6 +41,7 @@ export async function getPlaces(keyword, lat, lon) {
         for (let place in body) {
             places.push(body[place])
         }
+        console.log(places)
         return places
     }
     catch (err) {
@@ -48,3 +49,4 @@ export async function getPlaces(keyword, lat, lon) {
     }
     
 }
+

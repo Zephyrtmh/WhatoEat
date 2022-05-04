@@ -7,7 +7,7 @@ function Shop(props) {
     } else {
         openStatus = "no info";
     }
-    console.log(props.details['opening_hours']);
+    console.log(props.details['name']);
     // let isOpenJson = JSON.parse(props.details['opening_hours'])
     // let isOpen = isOpenJson['open_now']
     // const openStatus = isOpen ? "open" : "closed";
