@@ -50,3 +50,11 @@ export async function getPlaces(keyword, lat, lng) {
     
 }
 
+export function filterShops(filterBy, shopsList) {
+    shopsList.sort((first, second) => {
+        return second[filterBy] - first[filterBy]
+    })
+    console.log("new list")
+    console.log(shopsList)
+    return shopsList
+}
