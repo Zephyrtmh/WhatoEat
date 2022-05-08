@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## About WhatoEat
 
 "What should we eat today?" <br/>
-                                        "Hmmm, I'm ok with anything." <br/>
+<pre>                                     </pre> "Hmmm, I'm ok with anything." <br/>
 "How about chicken rice?" <br/>
                                         "Oh, I'm not really feeling chicken rice today."<br/>
 
