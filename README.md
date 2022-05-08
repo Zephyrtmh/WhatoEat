@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## About WhatoEat
 
-<span style="color: navy;">"What should we eat today?"</span> <br/>
+<span style="color: blue;">"What should we eat today?"</span> <br/>
 "Hmmm, I'm ok with whatever." <br/>
 "How about chicken rice?" <br/>
 "Oh, I'm not really feeling chicken rice today."<br/>
