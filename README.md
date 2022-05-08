@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Person B: "Hmmm, I'm ok with whatever." <br/>
 Person A: "How about chicken rice?" <br/>
 Person B: "Oh, I'm not really feeling chicken rice today."<br/>
+Person A: "... but you just said you're ok with whatever, urgh!"<br/>
 
 Ever had a conversation similar to this? Well, WhatoEat aims to solve exactly this! WhatoEat is an all in one app that decides what to eat (heh) based on a set of filters, and then displays a list of shops nearby for the selected food item. 
 
