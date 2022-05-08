@@ -12,6 +12,12 @@ Person A: "... but you just said you're ok with whatever, urgh!"<br/>
 
 Ever had a conversation similar to this? Well, WhatoEat aims to solve exactly this! WhatoEat is an all in one app that decides what to eat (heh) based on a set of filters, and then displays a list of shops nearby for the selected food item. 
 
+Techstack used:
+P - **PostgreSQL** (Relational Database Management System)
+E - **Express.js** (Node framework for REST API implementation)
+R - **React.js** (Frontend Javascript framework)
+N - **Node.js** (Javascript runtime to enable backend application to be written in Javascript)
+
 ## Running Application locally
 
 The respository contains the **client** folder (frontend) and **server** folder (backend and database).
