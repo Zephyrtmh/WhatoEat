@@ -12,7 +12,7 @@ Person A: "... but you just said you're ok with whatever, urgh!"<br/>
 
 Ever had a conversation similar to this? Well, WhatoEat aims to solve exactly this! WhatoEat is an all in one app that decides what to eat (heh) based on a set of filters, and then displays a list of shops nearby for the selected food item. 
 
-###Techstack used:
+### Techstack used:
 
 P - **PostgreSQL** (Relational Database Management System)<br/>
 E - **Express.js** (Node framework for REST API implementation)<br/>
