@@ -28,10 +28,7 @@ app.get("/food", async (req, res) => {
 //get one food choice
 app.get("/food/:id", async (req, res) => {
     try {
-        // console.log(req.params.id)
-        //const id = req.params.id
         const { id } = req.params;
-        // console.log(req.params)
         const food = await pool.query("SELECT * FROM food_items WHERE food_id = $1", [id]);
         res.json(food.rows);
     } catch (err) {
@@ -60,10 +57,9 @@ app.post("/submit", async (req, res) => {
     //     "values": [true, false, true]
     // }
     console.log(req.body)
-    console.log(typeof req.body.filters)
     let query = ''
     try {
-        if (typeof req.body.filters === 'undefined') {
+        if (typeof req.body.filters === 'undefined' || req.body.filters.length == 0) {
             query = "SELECT food_name FROM food_items";
         } else {
             query = "SELECT food_name FROM food_items WHERE ";
@@ -71,10 +67,6 @@ app.post("/submit", async (req, res) => {
             const filters = body.filters;
             const values = body.values;
     
-            // if (filters.length()) {
-            // console.log(body)
-            // console.log(req)
-            // }
             query += `${filters.shift()} = ${values.shift()}`
     
             if (filters.length > 0) {
