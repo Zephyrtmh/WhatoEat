@@ -1,7 +1,7 @@
 :root {
-  --colour1: #e6d3a3;
+  --colour1: rgb(237, 119, 64);
   --colour2: #d8d174;
-  --colour3: #f2f4f3;
+  --colour3: rgb(250, 198, 198);
   --colour4: #b6c454;
   --colour5: #91972a;
 }
@@ -15,25 +15,26 @@ body {
 
 .navbar {
   display: inline-flex;
-  width: 320px;
+  align-items: center;
+  width: 340px;
   justify-content: space-between;
   height: 60px;
   margin: 5vh 0 0 2vw;
   z-index: 1;
 }
 
-.searchbox {
-  margin-left: 5px;
-  z-index: 1;
-  
+.menu-img {
+  width: 4rem;
+  height: 68px;
 }
 
 .random-button {
-  width: 250px;
-  border-radius: 10px;
+  width: 255px;
+  height: 72px;
+  border-radius: 20px;
   text-align:center;
   border-width: 0;
-  font-size: 28px;
+  font-size: 36px;
   background-color: rgb(237, 119, 64);
   color:rgb(250, 198, 198);
   padding: 0 12px 0 12px;
@@ -41,29 +42,9 @@ body {
 }
 
 .random-button:hover {
-  border-width: 3px;
-  border-color: rgb(250, 198, 198);
+  border: solid 3px rgb(250, 198, 198);
 }
 
-.searchbox-submit {
-  font-size: 15px !important;
-  font-weight: 300 !important;
-  color: #333 !important;
-  line-height: 1.625 !important;
-  background-color: #fff !important;
-  border-color: #eee;
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
-  box-shadow: none;
-  box-sizing: content-box;
-  border-radius: 0;
-  background-image: url( //addsearch.com/logo/AAAAAA-20.png ) !important;
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
-  width: 100% !important;
-  padding: 15px !important;
-  cursor: auto !important;
-}
 
 .menu-button {
   z-index: 1;
@@ -75,10 +56,7 @@ body {
   display: inline-flex;
 }
 
-.menu-img {
-  width: 2.5rem;
-  height: 2.5rem;
-}
+
 
 .dice-button {
   z-index: 1;
@@ -135,7 +113,6 @@ body {
   z-index: 1;
   float: right;
   list-style-type: none;
-  color: blue;
   margin-right:-30vw;
   transition-duration: 0.3s;
 }
@@ -159,31 +136,6 @@ body {
   align-items: center;
 }
 
-.shop-ratings {
-  text-align: justify;
-  background-color: transparent;
-}
-
-.shopgrid {
-  border: solid;
-  border-color: var(--colour5);
-  width: 20vw;
-  padding: 0 12px 0 12px;
-  height: 30vh;
-  overflow-y: hidden;
-  margin: 0 0 20px 0;
-  background-color: var(--colour4);
-  box-shadow: 6px 6px;
-}
-
-.shoplist-filter-container {
-  width: 100%;
-  align-self: flex-end;
-  margin-top: 1.5vh;
-  display:flex;
-  justify-content: space-around;
-  }
-
 .shoplist-list {
   list-style-type: none;
   padding-left: 0;
@@ -191,14 +143,48 @@ body {
   
 }
 
+.shop-ratings {
+  text-align: justify;
+  background-color: transparent;
+}
+
+.shopgrid {
+  border: 0;
+  width: 20vw;
+  padding: 0 12px 0 12px;
+  height: 30vh;
+  overflow-y: hidden;
+  margin: 0 0 20px 0;
+  background-color: var(--colour3);
+}
+
+
+
+.shoplist-filter-container {
+  width: 100%;
+  align-self: flex-end;
+  margin-top: 1.5vh;
+  display:flex;
+  justify-content: space-around;
+  transition-delay: 4s;
+}
+
+.shoplist-filter-container-hidden {
+  margin-right: -30vw;
+  display: none;
+}
+
+
+
 .shoplist-filter-button-unselected {
   border-radius: 30px;
+  background-color: var(--colour1);
+  border: 0;
   /* padding: 15px; */
   width: 30%;
   height: 50px;
   border: solid 3px;
   color: none;
-  opacity: 70%;
 }
 
 .shoplist-filter-button-selected {
@@ -206,7 +192,7 @@ body {
 }
 
 .shoplist-filter-button-unselected:hover {
-  border: solid 3px rgb(107, 107, 107);
+  border: solid 3px var(--colour3)
 }
 
 .map-display {
@@ -229,8 +215,7 @@ body {
 .sidebar-extended {
   position: relative;
   z-index: 1;
-  border-right: solid var(--colour5);
-  background-color: var(--colour4);
+  background-color: var(--colour3);
   height: 100vh;
   overflow-y: scroll;
   margin-left: 0px;
@@ -248,7 +233,7 @@ body {
   margin-left: -30vw;
   transition-duration: 0.3s;
   transition-timing-function: linear;
-  background-color: var(--colour4);
+  background-color: var(--colour3);
   height: 100vh;
   max-width: 25vw;
 }
@@ -268,6 +253,7 @@ body {
 #filters-interface-container {
   display: flex;
   flex-direction: column;
+  padding: 0 1vw 0 1vw;
 }
 
 #filter-list {

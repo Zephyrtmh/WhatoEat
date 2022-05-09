@@ -29,8 +29,9 @@ function Shoplist(props) {
 
     }
 
-    if (extended === "shoplist-extended" && props.shops === []) {
-        
+    let hideFilter = "shoplist-filter-container"
+    if (extended === "shoplist-extended" && props.shops.length == 0) {
+        hideFilter = "shoplist-filter-container-hidden"
     }
 
     useEffect(() => {
@@ -42,11 +43,17 @@ function Shoplist(props) {
     return (
         <div className={extended}>
 
-            <div className="shoplist-filter-container">
+            {props.shops.length==0 ?
+
+            <p>No shops loaded.</p> : 
+
+            <div className={hideFilter}>
                 <p>Sort by: </p>
                 <button className={ratingFilter} onClick = {onRatingSortClick}>Rating</button>
                 <button className={distanceFilter} onClick = {onDistanceSortClick}>Distance</button>
             </div>
+            }
+            
 
             <ul className="shoplist-list">{shopNames}</ul>
             
