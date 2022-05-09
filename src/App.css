@@ -14,16 +14,35 @@ body {
 }
 
 .navbar {
-  display: flex;
-  justify-content: flex-start;
+  display: inline-flex;
+  width: 320px;
+  justify-content: space-between;
   height: 60px;
   margin: 5vh 0 0 2vw;
+  z-index: 1;
 }
 
 .searchbox {
   margin-left: 5px;
   z-index: 1;
   
+}
+
+.random-button {
+  width: 250px;
+  border-radius: 10px;
+  text-align:center;
+  border-width: 0;
+  font-size: 28px;
+  background-color: rgb(237, 119, 64);
+  color:rgb(250, 198, 198);
+  padding: 0 12px 0 12px;
+  font-family: 'Changa', sans-serif;
+}
+
+.random-button:hover {
+  border-width: 3px;
+  border-color: rgb(250, 198, 198);
 }
 
 .searchbox-submit {
@@ -50,6 +69,10 @@ body {
   z-index: 1;
   background-color: transparent;
   border: none;
+}
+
+.sidebar-navbar {
+  display: inline-flex;
 }
 
 .menu-img {
@@ -91,10 +114,6 @@ body {
   60% { transform: translate(0px,-8px)}
   70% { transform: translate(0px,-8px)}
   100% { transform: translate(0px,0px) }
-}
-
-.sidebar-navbar {
-  display: inline-flex;
 }
 
 
@@ -157,9 +176,37 @@ body {
   box-shadow: 6px 6px;
 }
 
+.shoplist-filter-container {
+  width: 100%;
+  align-self: flex-end;
+  margin-top: 1.5vh;
+  display:flex;
+  justify-content: space-around;
+  }
+
 .shoplist-list {
   list-style-type: none;
-  padding-right: 12px;
+  padding-left: 0;
+  /* padding-right: 12px; */
+  
+}
+
+.shoplist-filter-button-unselected {
+  border-radius: 30px;
+  /* padding: 15px; */
+  width: 30%;
+  height: 50px;
+  border: solid 3px;
+  color: none;
+  opacity: 70%;
+}
+
+.shoplist-filter-button-selected {
+  border-color: rgb(226, 104, 104);
+}
+
+.shoplist-filter-button-unselected:hover {
+  border: solid 3px rgb(107, 107, 107);
 }
 
 .map-display {
@@ -255,14 +302,14 @@ body {
   width: 30%;
   height: 50px;
   border: 3px solid ;
-  color: red;
+  color: rgb(226, 104, 104);
 }
 
 .filter-button-selected:hover {
-  border: solid 3px orange;
+  border: solid 3px rgb(255, 157, 157);
 }
 .filter-button-unselected:hover {
-  border: solid 3px orange;
+  border: solid 3px rgb(107, 107, 107);
 }
 
 .no-filter-button-unselected {
@@ -295,4 +342,12 @@ body {
   border: solid 3px;
   color: none;
   opacity: 70%;
+}
+
+.submit-button:hover {
+  border: solid 3px grey;
+}
+
+.info-window {
+  z-index: 2;
 }

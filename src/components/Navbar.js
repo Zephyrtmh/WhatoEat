@@ -28,10 +28,7 @@ export default class Navbar extends Component {
             <button className="menu-button"> 
                 <img className="menu-img" src={require("../resources/images/menu.png")} alt="menu" onClick={this.props.onClick}/>
             </button>
-            <Searchbox placeholder={this.state.placeholder} handleSubmit = {this.handleSubmit}/>
-            <button className="dice-button" onClick={this.handleRandom}> 
-                <img className="dice-img" src={require("../resources/images/dice.png")} alt="menu"/>
-            </button>
+            <button className="random-button">WHAT TO EAT?!</button>
         </div>
         )
     }
