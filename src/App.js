@@ -7,7 +7,7 @@ import Shoplist from './components/Shoplist.js';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { FoodContext } from './Context/FoodContext';
-import { getCurrLocation, getPlaces } from './utils/utils';
+import { filterShops, getCurrLocation, getPlaces } from './utils/utils';
 
 
 class App extends Component {
@@ -26,10 +26,18 @@ class App extends Component {
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.setFoodItem = this.setFoodItem(this);
+    this.handleSortButton = this.handleSortButton.bind(this);
   }
 
   handleMenuClick() {
     this.setState({extended: !this.state.extended});
+  }
+
+  handleSortButton(choice) {
+    // choice -> "distance" or "rating"
+    const sortedShops = filterShops(choice, this.state.places, this.state.location)
+    this.setState({places: sortedShops})
+    console.log("shoplist sorted", sortedShops)
   }
 
   setFoodItem = async (food) => {
@@ -42,10 +50,10 @@ class App extends Component {
       // this.setState({places: places})
       let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lng)
       
-      this.setState({places: places})
-      this.state.places.map((place) => {
-        console.log(place)
-      })
+      this.setState({places: places});
+      // this.state.places.map((place) => {
+      //   console.log(place)
+      // })
       
 
       // console.log("reponse done")
@@ -53,12 +61,15 @@ class App extends Component {
     }
   }
 
+
+
   componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
         this.setState({location: { "lat": lat, "lng": lng }});
+        console.log(this.state.location)
       });
     } else {
       console.log("geolocation not available");
@@ -81,7 +92,7 @@ class App extends Component {
             <Navbar onClick={this.handleMenuClick}/>
           </div>
 
-          <Shoplist shops={this.state.places} extended={this.state.extended}/>
+          <Shoplist shops={this.state.places} extended={this.state.extended} location={this.state.location} handleSortButton={this.handleSortButton}/>
         
           
         </body>

@@ -26,7 +26,7 @@ export default class Navbar extends Component {
         return (
         <div className="navbar">
             <button className="menu-button"> 
-                <img className="menu-img" src={require("../resources/images/menu.png")} alt="menu" onClick={this.props.onClick}/>
+                <img className="menu-img" src={require("../resources/images/burger-menu-2.png")} alt="menu" onClick={this.props.onClick}/>
             </button>
             <button className="random-button">WHAT TO EAT?!</button>
         </div>

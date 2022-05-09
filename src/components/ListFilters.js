@@ -83,7 +83,7 @@ function ListFilters(props) {
 
     return (
         <div id="filters-interface-container">
-            <button className={noFilterClassName} onClick={handleNoFilter}>No filter</button>
+            <button className={noFilterClassName} onClick={handleNoFilter}>Remove filters</button>
             <ul id="filter-list">
                 {filterAllList}
             </ul>
