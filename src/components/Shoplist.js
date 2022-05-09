@@ -1,21 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { filterShops } from '../utils/utils.js';
 import Shop from './Shop.js';
 
 function Shoplist(props) {
+
+    const [activeShops, setActiveShops] = useState([]);
+    const [distanceFilter, setDistanceFilter] = useState("shoplist-filter-button-unselected");
+    const [ratingFilter, setRatingFilter] = useState("shoplist-filter-button-unselected")
+
+    const onDistanceSortClick = () => {
+        console.log("Distance filter clicked")
+        props.handleSortButton("distance")
+    }
+
+    const onRatingSortClick = () => {
+        console.log("Rating filter clicked")
+        props.handleSortButton("rating")
+    }
+    
     const shopNames = props.shops.map((shop) => 
         <li key={shop['place_id']}><Shop name={shop['name']} details ={shop}/></li>
     );
 
-    let className = "shoplist-hidden"
-
+    let extended = "shoplist-hidden"
+    
     if (props.extended === true) {
-        console.log("it's extended!")
-        className = "shoplist-extended"
+        extended = "shoplist-extended"
+
     }
 
+    if (extended === "shoplist-extended" && props.shops === []) {
+        
+    }
+
+    useEffect(() => {
+        setActiveShops(props.shops)
+        console.log(activeShops)
+    });
+
+    
     return (
-        <div className={className}>
+        <div className={extended}>
+
+            <div className="shoplist-filter-container">
+                <p>Sort by: </p>
+                <button className={ratingFilter} onClick = {onRatingSortClick}>Rating</button>
+                <button className={distanceFilter} onClick = {onDistanceSortClick}>Distance</button>
+            </div>
+
             <ul className="shoplist-list">{shopNames}</ul>
+            
         </div>
         
     );

@@ -50,20 +50,20 @@ export async function getPlaces(keyword, lat, lng) {
     
 }
 
-export function filterShops(filterBy="default", shopsList, currLoc) {
+export function filterShops(filterBy, shopsList, currLoc) {
     switch(filterBy) {
         case "default":
             console.log("filter shops by default")
-            break;
+            return shopsList
 
         case "rating":
             console.log("filter shops by ratings")
             shopsList.sort((first, second) => {
                 return second["rating"] - first["rating"]
             })
-            console.log("new list")
+            console.log("new rating sorted list")
             console.log(shopsList)
-            break;
+            return shopsList
 
         case "distance":
             console.log("filter shops by distance")
@@ -75,9 +75,9 @@ export function filterShops(filterBy="default", shopsList, currLoc) {
                 console.log(dist2, dist1)
                 return dist1 - dist2
             })
-            console.log("new list")
+            console.log("new distance sorted list")
             console.log(shopsList)
-            break;
+            return shopsList
     } 
     
     return shopsList
