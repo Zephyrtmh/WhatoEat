@@ -25,7 +25,7 @@ body {
 
 .menu-img {
   width: 4rem;
-  height: 68px;
+  height: 62px;
 }
 
 .random-button {
@@ -149,6 +149,8 @@ body {
 }
 
 .shopgrid {
+  color: var(--colour1);
+  border-radius: 10px;
   border: 0;
   width: 20vw;
   padding: 0 12px 0 12px;
@@ -277,7 +279,7 @@ body {
   /* padding: 15px; */
   width: 30%;
   height: 50px;
-  border: solid 3px;
+  border: none;
   color: none;
   opacity: 70%;
 }
@@ -301,12 +303,11 @@ body {
 .no-filter-button-unselected {
   border-radius: 30px;
   padding: 15px 6%;
-  border: solid 3px;
-  color: none;
-  opacity: 70%;
+  border: solid 3px var(--colour3);
+  background-color: none;
+  color: var(--colour3);
   /* width: 120px; */
   align-self: flex-end;
-  margin-right: 10%;
   margin-bottom: -10px;
 }
 
@@ -314,10 +315,9 @@ body {
   border-radius: 30px;
   padding: 15px 6%;
   border: solid 3px;
-  color: red;
+  color: var(--colour1);
   /* width: 120px; */
   align-self: flex-end;
-  margin-right: 10%;
   margin-bottom: -10px;
 }
 
