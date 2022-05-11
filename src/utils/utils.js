@@ -1,6 +1,19 @@
-export function random_food(foodChoices=["chicken rice", "laksa", "prata", "pasta", "cai fan", "thai food", "KBBQ", "ramen", "mala xiang guo", "yong tau foo"]) {
-    const randInt = Math.floor(Math.random()*foodChoices.length)
-    const choice = foodChoices[randInt]
+export async function random_food(foodChoices=[]) {
+    async function getFood() {
+        if (foodChoices.length === 0) {
+            const response = await fetch("http://localhost:5000/food");
+            const foodChoicesObj = await response.json();
+            const allFood = Object.values(foodChoicesObj);
+            return allFood
+        } else {
+            return foodChoices
+        }
+        
+    }
+    foodChoices = await getFood();
+    const randInt = Math.floor(Math.random()*foodChoices.length);
+    const choice = foodChoices[randInt];
+    console.log("choice: ", choice)
     return choice
 }
 

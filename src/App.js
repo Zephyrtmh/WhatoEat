@@ -7,7 +7,7 @@ import Shoplist from './components/Shoplist.js';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { FoodContext } from './Context/FoodContext';
-import { filterShops, getCurrLocation, getPlaces } from './utils/utils';
+import { filterShops, getCurrLocation, getPlaces, random_food } from './utils/utils';
 
 
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.setFoodItem = this.setFoodItem(this);
     this.handleSortButton = this.handleSortButton.bind(this);
-  }
+    this.handleRandomButtonClick = this.handleRandomButtonClick.bind(this); }
 
   handleMenuClick() {
     this.setState({extended: !this.state.extended});
@@ -40,24 +40,19 @@ class App extends Component {
     console.log("shoplist sorted", sortedShops)
   }
 
+  async handleRandomButtonClick() {
+    //randomise places
+    random_food([]).then((selectFood) => {
+      this.state.setFoodItem(selectFood.food_name);
+    });    
+  }
+
   setFoodItem = async (food) => {
     this.setState({foodItem: food});
     
     if (this.state.foodItem != '') {
-      // let req = { "search": this.state.foodItem, "lat": this.state.location.lat, "lon": this.state.location.lon };
-      // const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
-      // const places = await response.json()
-      // this.setState({places: places})
       let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lng)
-      
       this.setState({places: places});
-      // this.state.places.map((place) => {
-      //   console.log(place)
-      // })
-      
-
-      // console.log("reponse done")
-      // console.log(response)
     }
   }
 
@@ -89,7 +84,7 @@ class App extends Component {
             <div className = "sidebar-container">
               <Sidebar extended={this.state.extended} setFoodItem={this.setFoodItem}/>
             </div>
-            <Navbar onClick={this.handleMenuClick}/>
+            <Navbar onMenuClick={this.handleMenuClick} onRandomClick={this.handleRandomButtonClick} />
           </div>
 
           <Shoplist shops={this.state.places} extended={this.state.extended} location={this.state.location} handleSortButton={this.handleSortButton}/>
