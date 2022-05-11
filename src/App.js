@@ -21,13 +21,17 @@ class App extends Component {
       foodItem: '',
       setFoodItem: this.setFoodItem,
       location: {"lat": '', "lng": ''},
-      places: []
+      places: [],
+      activePlace: ''
     };
 
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.setFoodItem = this.setFoodItem(this);
     this.handleSortButton = this.handleSortButton.bind(this);
-    this.handleRandomButtonClick = this.handleRandomButtonClick.bind(this); }
+    this.handleRandomButtonClick = this.handleRandomButtonClick.bind(this); 
+    this.handleShopGridClick = this.handleShopGridClick.bind(this);
+    this.setCurrLoc = this.setCurrLoc.bind(this);
+  }
 
   handleMenuClick() {
     this.setState({extended: !this.state.extended});
@@ -45,6 +49,18 @@ class App extends Component {
     random_food([]).then((selectFood) => {
       this.state.setFoodItem(selectFood.food_name);
     });    
+  }
+
+  handleShopGridClick(activePlace) {
+    this.setState({ activePlace: activePlace })
+    console.log("activePlace: ", activePlace)
+  }
+
+  setCurrLoc = async (location) => {
+    this.setState({ location: { "lat": location.lat, "lng": location.lng }})
+    console.log("new location: ", this.state.location)
+    let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lng)
+    this.setState({places: places})
   }
 
   setFoodItem = async (food) => {
@@ -78,7 +94,13 @@ class App extends Component {
       <FoodContext.Provider value={this.state}>
         <body className="body-container">
           <div>
-            <GoogleMap foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder} location={this.state.location} places={this.state.places}/>
+            <GoogleMap 
+            foodItem={this.state.foodItem != ''? this.state.foodItem : this.state.placeholder} 
+            location={this.state.location} 
+            places={this.state.places}
+            activePlace={this.state.activePlace}
+            setCurrLoc={this.setCurrLoc}/>
+            
           </div>
           <div className="sidebar-navbar">
             <div className = "sidebar-container">
@@ -87,7 +109,7 @@ class App extends Component {
             <Navbar onMenuClick={this.handleMenuClick} onRandomClick={this.handleRandomButtonClick} />
           </div>
 
-          <Shoplist shops={this.state.places} extended={this.state.extended} location={this.state.location} handleSortButton={this.handleSortButton}/>
+          <Shoplist shops={this.state.places} extended={this.state.extended} location={this.state.location} handleSortButton={this.handleSortButton} onShopGridClick={this.handleShopGridClick}/>
         
           
         </body>
