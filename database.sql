@@ -49,7 +49,7 @@ INSERT INTO food_items (
 \copy food_filters TO 'C:\Users\Ionicon\Documents\Zepyhyr\Code\WhatoEat\food_filters.csv' DELIMITER ',' CSV HEADER;
 
 -- copy csv file into table in database (reverse of ^ command)
-\copy food_filters FROM 'C:\Users\Ionicon\Documents\Zepyhyr\Code\WhatoEat\food_filters.csv' DELIMITER ',' CSV HEADER;
+\copy food_filters FROM '\food_filters.csv' DELIMITER ',' CSV HEADER;
 
 SELECT food_name 
 FROM food_items
