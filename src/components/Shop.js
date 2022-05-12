@@ -22,8 +22,9 @@ function Shop(props) {
         <div className="shopgrid">
             <h4 className="shopName">{props.name}</h4>
             {shopRatings}
-            <p className="shop-address">{props.details['vicinity']}</p>
-            <p>{openStatus}</p>
+            <p className="shop-address">Address: {props.details['vicinity']}</p>
+            <p>Opening: {openStatus}</p>
+            
         </div>
     );
 }
