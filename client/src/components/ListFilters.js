@@ -28,7 +28,7 @@ function ListFilters(props) {
     const handleSubmit = async () => {
         try {
             const convertedActiveFilters = convertFiltersFormat(activeFilters);
-            const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(convertedActiveFilters)});
+            const response = await fetch("/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(convertedActiveFilters)});
             let resJson = response.json();
             // let foodNames = resJson.map((foodName) => console.log(foodName));
             await resJson.then((data) => {
@@ -60,7 +60,7 @@ function ListFilters(props) {
             try {
                 // need to add check to prevent infinite loop
                 
-                const response = await fetch("http://localhost:5000/filters/");
+                const response = await fetch("/filters/");
                 const jsonData = await response.json();
                 const filters = jsonData.map((filter) => 
                 <li id={filter}><Filter filterName={filter.filter_name} toFilter={toFilter} handleFilterSelection={handleFilterSelection}/></li>

@@ -1,7 +1,7 @@
 export async function random_food(foodChoices=[]) {
     async function getFood() {
         if (foodChoices.length === 0) {
-            const response = await fetch("http://localhost:5000/food");
+            const response = await fetch("/food");
             const foodChoicesObj = await response.json();
             const allFood = Object.values(foodChoicesObj);
             return allFood
@@ -48,7 +48,7 @@ export async function getPlaces(keyword, lat, lng) {
     try {
         let req = {"search": keyword, "lat": lat, "lng": lng}
         // console.log(req)
-        const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
+        const response = await fetch("/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
         const body = await response.json()
         let places = []
         for (let place in body) {
