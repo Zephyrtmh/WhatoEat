@@ -1,0 +1,42 @@
+food_id,food_name,halal,spicy,soup,hot,vegetarian,shared,fried
+1,chicken rice,f,f,f,t,f,f,f
+2,laksa,f,t,t,t,f,f,f
+3,mala xiang guo,f,t,f,t,f,t,t
+4,mala hotpot,f,t,t,t,f,t,f
+5,chicken curry,f,t,t,t,f,f,f
+6,burgers,f,f,f,t,f,f,f
+7,fried rice,f,f,f,t,f,f,t
+8,char kuay teow,,,,,,,
+9,hokkien mee,,,,,,,
+10,stingray,,,,,,,
+11,fish head curry,,,,,,,
+12,porridge,,,,,,,
+13,satay,,,,,,,
+14,char siew,,,,,,,
+15,Oyster omelette,,,,,,,
+16,bak kut the,,,,,,,
+17,kaya toast,,,,,,,
+18,nasi lemak,,,,,,,
+19,roti prata,,,,,,,
+20,bar chor mee,,,,,,,
+21,ban mian ,,,,,,,
+22,chilli crab,,,,,,,
+23,claypot rice,,,,,,,
+24,curry chicken noodles,,,,,,,
+25,curry puff,,,,,,,
+26,duck rice,,,,,,,
+27,fish soup,,,,,,,
+28,carrot cake,,,,,,,
+29,kway chap,,,,,,,
+30,lor mee,,,,,,,
+31,mee rebus,,,,,,,
+32,mee siam,,,,,,,
+33,mee soto,,,,,,,
+34,nasi biryani,,,,,,,
+35,peranakan,,,,,,,
+36,prawn noodles,,,,,,,
+37,wanton mee,,,,,,,
+38,western food,,,,,,,
+39,yong tau foo,,,,,,,
+40,zi char,,,,,,,
+41,cai fan,,,,,,,
