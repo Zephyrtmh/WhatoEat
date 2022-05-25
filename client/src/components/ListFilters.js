@@ -60,7 +60,7 @@ function ListFilters(props) {
             try {
                 // need to add check to prevent infinite loop
                 
-                const response = await fetch("/filters/");
+                const response = await fetch("/filters");
                 const jsonData = await response.json();
                 const filters = jsonData.map((filter) => 
                 <li id={filter}><Filter filterName={filter.filter_name} toFilter={toFilter} handleFilterSelection={handleFilterSelection}/></li>
