@@ -18,7 +18,8 @@ app.use(express.json());
 
 if(process.env.NODE_ENV === "production") {
     //server static content
-    app.use(express.static(path.join(__dirname, "client/build")));
+    app.use(express.static("client/build"));
+    console.log("build folder found")
 }
 
 //ROUTES//
