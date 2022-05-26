@@ -56,7 +56,6 @@ app.post("/submit", async (req, res) => {
     //     "filters": ["soup", "halal", "spicy"],
     //     "values": [true, false, true]
     // }
-    console.log(req.body)
     let query = ''
     try {
         if (typeof req.body.filters === 'undefined' || req.body.filters.length == 0) {
@@ -78,9 +77,8 @@ app.post("/submit", async (req, res) => {
 
         
         query += ";"
-        console.log(query)
         food_names = await pool.query(query);
-        console.log(food_names)
+        console.log("foodnames: ", food_names.rows)
         res.json(food_names.rows);
         
     } catch (err) {
@@ -116,22 +114,27 @@ app.post("/places", async (req, res) => {
     try {
         console.log("query received")
         let search = req.body.search
+        console.log(req.body)
+        console.log(search)
+        
         let lat = req.body.lat;
         let lng = req.body.lng;
-        let apiKey = "AIzaSyCopFWv0YMtXgVgDtt5ujO_v_3xbPV-LCA";
+        console.log(lat, lng)
+        let apiKey = "AIzaSyAYUkXE4WVRZmuwvNq-A7ecU5RYyuL-2IE";
         let httpLink = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=${search}
         &location=${lat}%2C${lng}
         &type=restaurant
         &radius=1500
         &key=${apiKey}
         `
-        console.log(search)
+        console.log(httpLink)
         axios.get(httpLink)
         .then((response) => {
+            
             const data = response.data
             const places = data.results
             res.json(places)
-            console.log(places)
+            
         }, (error) => {
             console.error(error);
         });

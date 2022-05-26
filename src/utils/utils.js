@@ -47,9 +47,10 @@ export function convertFiltersFormat(filters) {
 export async function getPlaces(keyword, lat, lng) {
     try {
         let req = {"search": keyword, "lat": lat, "lng": lng}
-        // console.log(req)
+        console.log(req)
         const response = await fetch("http://localhost:5000/places", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req)});
         const body = await response.json()
+        console.log(body)
         let places = []
         for (let place in body) {
             places.push(body[place])

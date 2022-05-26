@@ -30,16 +30,20 @@ function ListFilters(props) {
             const convertedActiveFilters = convertFiltersFormat(activeFilters);
             const response = await fetch("http://localhost:5000/submit", { method:'POST', headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}, body: JSON.stringify(convertedActiveFilters)});
             let resJson = response.json();
+            console.log(resJson)
             // let foodNames = resJson.map((foodName) => console.log(foodName));
             await resJson.then((data) => {
                 let food_names = [];
                 for (let food in data) {
                     food_names.push(data[food].food_name);
                 }
-                let rand_food = random_food(food_names);
-                console.log(food_names);
-                console.log(rand_food);
-            context.setFoodItem(random_food(food_names));
+                random_food(food_names)
+                .then((rand_food) => {
+                    console.log(rand_food)
+                    context.setFoodItem(rand_food);
+                })
+
+            
             });
         } catch (err) {
             console.log(err.message)

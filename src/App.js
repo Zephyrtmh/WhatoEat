@@ -64,8 +64,7 @@ class App extends Component {
   }
 
   setFoodItem = async (food) => {
-    this.setState({foodItem: food});
-    
+    this.setState({ foodItem: food });
     if (this.state.foodItem != '') {
       let places = await getPlaces(this.state.foodItem, this.state.location.lat, this.state.location.lng)
       this.setState({places: places});
