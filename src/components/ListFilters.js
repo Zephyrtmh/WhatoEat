@@ -52,8 +52,6 @@ function ListFilters(props) {
     }
 
     const foodContext = React.createContext('');
-
-    let foodFilters = []
     
 
     useEffect(() => {

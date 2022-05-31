@@ -56,3 +56,12 @@ FROM food_items
 WHERE halal = false
 AND spicy = true
 AND soup = true;
+
+SELECT
+    table_name,
+    column_name,
+    data_type
+FROM
+    information_schema.columns
+WHERE
+    table_name = 'food_items';

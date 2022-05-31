@@ -11,6 +11,7 @@ export async function random_food(foodChoices=[]) {
         
     }
     foodChoices = await getFood();
+    console.log(foodChoices);
     const randInt = Math.floor(Math.random()*foodChoices.length);
     const choice = foodChoices[randInt];
     console.log("choice: ", choice)
@@ -18,14 +19,17 @@ export async function random_food(foodChoices=[]) {
 }
 
 export function convertFiltersFormat(filters) {
+
+    //Removes filters with value = either
+
     //example format of input:
     // {
-    //     fried: "yes"
-    //     halal: "either"
-    //     hot: "either"
-    //     shared: "yes"
-    //     soup: "either"
-    //     spicy: "either"
+    //     fried: "yes",
+    //     halal: "either",
+    //     hot: "either",
+    //     shared: "yes",
+    //     soup: "either",
+    //     spicy: "either",
     //     vegetarian: "either"
     // }
 
